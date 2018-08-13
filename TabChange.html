@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--1.引入jQuery 的 UI css 文件-->
+    <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
+    <!--2.引入jquery 库文件-->
+    <script src="jquery.js"></script>
+    <!--3.引入jquery 的 UI js 文件-->
+    <script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $( "#tabs" ).tabs();
+        });
+    </script>
+</head>
+<body>
+
+<div id="box">
+    <!-- Tabs -->
+    <h2 class="demoHeaders">Tabs</h2>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">First</a></li>
+            <li><a href="#tabs-2">Second</a></li>
+            <li><a href="#tabs-3">Third</a></li>
+            <li><a href="#tabs-4">First</a></li>
+            <li><a href="#tabs-5">Second</a></li>
+            <li><a href="#tabs-6">Third</a></li>
+        </ul>
+        <div id="tabs-1">ore  ex ea commodo consequat.</div>
+        <div id="tabs-2">Phasellus  Fusce sed lorem in enim dictum bibendum.</div>
+        <div id="tabs-3">Nam vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+        <div id="tabs-4">ore  ex ea commodo consequat.</div>
+        <div id="tabs-5">Phasellus  Fusce sed lorem in enim dictum bibendum.</div>
+        <div id="tabs-6">Nam vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
