@@ -10,7 +10,7 @@
  * 建立数据库链接
  * 调用函数的时候忽略警告，在函数名前加一个@
  */
-   $succed =  @mysqli_connect('127.0.0.1','root','12345678','liyang_db');
+   $succed =  @mysqli_connect('127.0.0.1','root','luolamei8191111','user_db');
 
    if ($succed){
        echo '链接数据库成功';
@@ -18,7 +18,7 @@
        echo '链接数据库失败';
    }
 
-   $result = mysqli_query($succed,'SELECT * FROM user;');
+   $result = mysqli_query($succed,'SELECT * FROM user_tab;');
 
    $data = mysqli_fetch_assoc($result);
 
