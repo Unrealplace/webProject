@@ -1,8 +1,8 @@
 <?php
 define('HOST','127.0.0.1');
 define('USER','root');
-define('PASSWORD','12345678');
-define('DB','liyang_db2');
+define('PASSWORD','luolamei8191111');
+define('DB','liyang_db1');
 $link = mysqli_connect(HOST,USER,PASSWORD,DB);
 if (!$link){
     echo '链接失败';
@@ -60,7 +60,7 @@ if (!$query){
                 <td><?php echo $item['gender'] == 0 ? '♀' : '♂'; ?></td>
                 <td><?php echo $item['birthday']; ?></td>
                 <td class="text-center">
-                    <a class="btn btn-info btn-sm" href="edit.php">编辑</a>
+                    <a class="btn btn-info btn-sm" href="edit.php?id=<?php echo $item['id']?>">编辑</a>
                     <a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $item['id'] ?>">删除</a>
                 </td>
             </tr>

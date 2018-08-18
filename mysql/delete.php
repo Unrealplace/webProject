@@ -7,8 +7,8 @@
  */
 define('HOST','127.0.0.1');
 define('USER','root');
-define('PASSWORD','12345678');
-define('DB','liyang_db2');
+define('PASSWORD','luolamei8191111');
+define('DB','liyang_db1');
 if (empty($_GET['id'])){
     echo '删除失败';
 }
