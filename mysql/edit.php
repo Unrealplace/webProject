@@ -5,10 +5,8 @@ define('PASSWORD','luolamei8191111');
 define('DB','liyang_db1');
 
 
-/**
- * 添加用户
- */
-function add_user() {
+
+function edit($user){
     // 验证非空
     if (empty($_POST['name'])) {
         $GLOBALS['error_message'] = '请输入姓名';
@@ -26,29 +24,25 @@ function add_user() {
     }
 
     // 取值
-    $name = $_POST['name'];
-    $gender = $_POST['gender'];
-    $birthday = $_POST['birthday'];
+    $user['name'] = $_POST['name'];
+    $user['gender'] = $_POST['gender'];
+    $user['birthday'] = $_POST['birthday'];
 
     // 接收文件并验证
-    if (empty($_FILES['avatar'])) {
-        $GLOBALS['error_message'] = '请上传头像';
-        return;
+    if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+        /**
+         * 获取扩展名
+         */
+        $ext = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+        // => jpg
+        $target = 'uploads/avatar-' . uniqid() . '.' . $ext;
+
+        if (!move_uploaded_file($_FILES['avatar']['tmp_name'], $target)) {
+            $GLOBALS['error_message'] = '上传头像失败';
+            return;
+        }
+        $user['avatar'] = $target;
     }
-
-    /**
-     * 获取扩展名
-     */
-    $ext = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
-    // => jpg
-    $target = 'uploads/avatar-' . uniqid() . '.' . $ext;
-
-    if (!move_uploaded_file($_FILES['avatar']['tmp_name'], $target)) {
-        $GLOBALS['error_message'] = '上传头像失败';
-        return;
-    }
-
-    // 保存
 
     // 1. 建立连接
     $conn = mysqli_connect(HOST, USER, PASSWORD, DB);
@@ -58,8 +52,13 @@ function add_user() {
         return;
     }
     mysqli_set_charset($conn,'UTF8');
+    $u_name = $user['name'];
+    $u_gender = $user['gender'];
+    $u_birthday =$user['birthday'];
+    $u_avatar = $user['avatar'];
+    $id = $user['id'];
     // 2. 开始查询
-    $query = mysqli_query($conn, "insert into users values (null, '{$name}', {$gender}, '{$birthday}', '{$target}');");
+    $query = mysqli_query($conn, "update `users` set `name` ='$u_name',`gender` = '$u_gender',`birthday`='$u_birthday',`avatar` = '$u_avatar' WHERE `id` = '$id'");
 
     if (!$query) {
         $GLOBALS['error_message'] = '查询过程失败';
@@ -78,46 +77,66 @@ function add_user() {
     header('Location: index.php');
 }
 
+
+
 /**
  * 提交添加用户
  */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    add_user();
+
+
+    if (empty($_GET['id'])){
+        exit('没有用户ID');
+    }
+    $id = $_GET['id'];
+
+    $link = mysqli_connect(HOST,USER,PASSWORD,DB);
+    if (!$link){
+        echo '链接失败';
+        return;
+    }
+    mysqli_set_charset($link,'UTF8');
+    $query = mysqli_query($link,'select * from users where  id = '.$id.' limit 1;');
+    if (!$query){
+        echo '查询数据失败';
+        mysqli_close($link);
+        return;
+    }
+    $user = mysqli_fetch_assoc($query);
+    edit($user);
+    mysqli_close($query);
+
+
+
+
+}elseif ($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+    /**
+     * 进入编辑模式
+     */
+    if (empty($_GET['id'])){
+        exit('必须传入指定参数');
+    }
+    $id = $_GET['id'];
+
+    $link = mysqli_connect(HOST,USER,PASSWORD,DB);
+    if (!$link){
+        echo '链接失败';
+        return;
+    }
+    mysqli_set_charset($link,'UTF8');
+    $query = mysqli_query($link,'select * from users where  id = '.$id.' limit 1;');
+    if (!$query){
+        echo '查询数据失败';
+        mysqli_close($link);
+        return;
+    }
+    $user = mysqli_fetch_assoc($query);
+
+    if (!$user){
+        exit('找不到用户');
+    }
 }
-
-/**
- * 进入编辑模式
- */
-if (empty($_GET['id'])){
-    exit('必须传入指定参数');
-}
-$id = $_GET['id'];
-
-$link = mysqli_connect(HOST,USER,PASSWORD,DB);
-if (!$link){
-    echo '链接失败';
-    return;
-}
-mysqli_set_charset($link,'UTF8');
-$query = mysqli_query($link,'select * from users where  id = '.$id.' limit 1;');
-if (!$query){
-    echo '查询数据失败';
-    mysqli_close($link);
-    return;
-}
-
-$affect_rows = mysqli_affected_rows($link);
-
-if ($affect_rows > 0){
-//    echo '查询成功';
-}
-
-$user = mysqli_fetch_assoc($query);
-
-if (!$user){
-    exit('找不到用户');
-}
-
 
 ?>
 <!DOCTYPE html>
@@ -144,7 +163,7 @@ if (!$user){
             <?php echo $error_message; ?>
         </div>
     <?php endif ?>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" autocomplete="off">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>?id=<?php echo $user['id'];?>" method="post" enctype="multipart/form-data" autocomplete="off">
         <div class="form-group">
             <label for="avatar">头像</label>
             <input type="file" class="form-control" id="avatar" name="avatar">

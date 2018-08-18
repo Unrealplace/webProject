@@ -21,20 +21,18 @@ if (!$query){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>XXX管理系统</title>
+    <title>李杨管理系统</title>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">XXX管理系统</a>
+    <a class="navbar-brand" href="#">李杨管理系统</a>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
             <a class="nav-link" href="index.html">用户管理</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">商品管理</a>
-        </li>
+
     </ul>
 </nav>
 <main class="container">
