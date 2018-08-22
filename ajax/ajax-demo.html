@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    /**
+     * 涉及到ajax 操作到页面不能使用文件的协议访问
+     * 特殊情况下可以
+     * @type {XMLHttpRequest}
+     */
+    var request = new XMLHttpRequest();
+
+    /**
+     * 会有 1，2，3，4 四个状态
+     */
+    //等待响应 接收到服务端的响应后的回调
+    request.onreadystatechange = function () {
+      if (this.readyState !== 4)return;
+      //获取响应的内容
+      console.log(this.responseText);
+
+    }
+
+    //设置请求路径和请求方法
+    request.open('GET','http://liyang.com/myWebProject/ajax/ajacresponse.php');
+
+    //发送请求 需要时间 异步的
+    request.send();
+
+
+
+</script>
+
+</body>
+</html>
