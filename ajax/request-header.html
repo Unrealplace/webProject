@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    /**
+     * 设置请求头的操作
+     */
+
+    var xhr= new XMLHttpRequest();
+
+    /**
+     * 设置请求行，请求方法，请求路径，协议版本等
+     */
+    xhr.open('post','http://liyang.com/myWebProject/ajax/ajacresponse.php');
+
+    /**
+     * 设置请求头
+     */
+    xhr.setRequestHeader('Foo','World');//
+//    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Content-Type','application/json');
+    /**
+     * 设置请求体
+     */
+//    xhr.send('key=hello&key2=heieieiee')//urlencode 方式设置请求体
+    xhr.send('{"hello":"world"}')//json 格式发送
+    xhr.onreadystatechange = function () {
+
+        console.log(this.response);
+        console.log(this.responseText);
+
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="list">
+
+</ul>
+
+<script>
+
+    /**
+     * 获取列表
+     */
+    var listEle;
+    window.onload = function () {
+        listEle = document.getElementById('list');
+    }
+
+    /**
+     * 设置请求头的操作
+     */
+
+    var xhr= new XMLHttpRequest();
+
+    /**
+     * 设置请求行，get请求用？拼接方式传递
+     */
+    xhr.open('get','http://liyang.com/myWebProject/ajax/users.php?id=18');
+
+    /**
+     * 设置请求体
+     */
+    xhr.send()
+    xhr.onreadystatechange = function () {
+        if (this.readyState!==4)return;
+        var json = JSON.parse(this.responseText);
+        for (var i =0;i<json.length;i++){
+            var item = json[i];
+            var liEle = document.createElement('li');
+            liEle.tag = item['id'];
+            liEle.innerHTML = item['name'];
+            listEle.appendChild(liEle);
+            liEle.addEventListener('click',function () {
+                console.log(this.tag);
+            })
+        }
+    }
+    =
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('get','http://liyang.com/myWebProject/ajax/ajacresponse.php');
+    xhr.send();
+    /**
+     * onload 是html5 中提供的 xmlHttprequest
+     */
+    xhr.onload = function () {
+
+        console.log(this.responseText);
+    }
+
+</script>
+
+</body>
+</html>

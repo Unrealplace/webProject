@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var request = new XMLHttpRequest();
+    request.addEventListener('readystatechange',function () {
+        switch (this.readyState){
+            case 1:
+            {
+                console.log('start.....');
+            }
+                break;
+            case 2:
+            {
+                /**
+                 * 已经开始接受响应报文的响应头
+                 *
+                 * 但是拿不到响应体
+                 */
+                console.log(this.getAllResponseHeaders());
+            }
+                break;
+            case 3:
+            {
+                /**
+                 * 正在下载响应体,这个拿到的可能不完整
+                 */
+                console.log(this.responseText);
+
+            }
+                break;
+            case 4:
+            {
+                /**
+                 * 如果成功，响应体返回成功
+                 */
+                console.log(this.responseText);
+            }
+                break;
+            default:
+                break;
+        }
+
+    });
+    request.open('get','http://liyang.com/myWebProject/ajax/ajacresponse.php');
+    request.send();
+
+
+</script>
+
+</body>
+</html>

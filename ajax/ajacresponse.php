@@ -6,5 +6,8 @@
  * Time: 下午11:20
  */
 
-echo time();
+for ($i = 0;$i<100000;$i++){
+ ;
+}
+echo 'helll worldhelll worldhelll worldhelll worldhelll worldhelll worldhelll worldhelll worldhelll worldhelll worldhelll worldhelll world';
 

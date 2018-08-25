@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>用户名</td>
+        <td><input type="text" name="user" id="user"></td>
+    </tr>
+    <tr>
+        <td>密码</td>
+        <td><input type="text" name="password" id="pass"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><button id="login">登陆</button></td>
+    </tr>
+</table>
+
+<script>
+    window.onload = function () {
+        var login = document.getElementById('login');
+        var user  = document.getElementById('user');
+        var pass  = document.getElementById('pass');
+        
+        login.addEventListener('click',function () {
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('post','login.php');
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            xhr.send(`user=${user.value}&pass=${pass.value}`);
+            xhr.onreadystatechange = function () {
+                console.log(this.responseText);
+            }
+        });
+        
+    }
+
+</script>
+</body>
+</html>
