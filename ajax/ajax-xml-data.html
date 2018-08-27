@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('get','xml.php');
+    xhr.send();
+    xhr.onreadystatechange = function () {
+
+        /**
+         * 通过dom方式操作服务端返回的xml 数据
+         *
+         * 服务端返回的响应头必须要是application/xml格式
+         *
+         */
+        console.log(this.responseXML);
+
+    }
+</script>
+
+</body>
+</html>
