@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery.js"></script>
+</head>
+<body>
+
+<script>
+    $.ajax('ajacresponse.php',{
+        type:'post',//method 请求方法
+        success:function (res) {
+            //拿到响应体
+            console.log(res)
+        }
+    })
+
+    $.ajax({
+        url:'users.php',
+        type:'get',
+        dataType:'json',//设置响应体的类型,防止服务端类型有问题，客户端默认认为返回的就是json 格式
+        data:{ //请求参数
+            id:19,
+            name:'liyang',
+            age:13,},
+        success:function (res) {
+            console.log(res)
+        },
+        error:function (res) {
+            console.log(res)
+        },
+
+    })
+
+    $.ajax({
+        url:'tttt.php',//页面不存在
+        type:'get',
+        beforeSend:function (xhr) {
+          console.log('beforeSend',xhr)
+        },
+        success:function (res) {
+            console.log(res)
+        },
+        error:function (xhr) {
+            console.log('error',xhr)
+        },
+        complete:function (xhr) { //不管是成功还是失败都是请求完成
+            console.log('complete',xhr)
+        }
+
+    })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery.js"></script>
+</head>
+<body>
+
+<script>
+    $.get('users.php',{id:20},function (res) {
+        console.log(res)
+    })
+    $.post('users.php',{id:4},function (res) {
+        console.log(res)
+    })
+    $.getJSON('users.php',{id:14},function (res) {
+        console.log(res)
+    })
+</script>
+
+</body>
+</html>
