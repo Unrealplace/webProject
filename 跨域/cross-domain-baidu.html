@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery.js"></script>
+    <link rel="stylesheet" href="../jquery.js ">
+</head>
+<body>
+
+<script>
+
+    /**
+     * 跨域请求百度的
+     * 同源策略指的是，不同地址间默认不能相互发送AJAX 请求
+     */
+    $.get(
+        'http://www.baidu.com',
+        function (res) {
+            console.log(res);
+        }
+    )
+
+    /**
+     * 可以发请求的
+     * img
+     *
+     * link
+     *
+     * script
+     *
+     * iframe 一个页面挖个坑加载另一个额页面
+     */
+
+    /**
+     * 1.img
+     * 可以发送不同源地址间的请求
+     * 无法拿到响应结果
+     *
+     */
+    var  img = new Image();
+    img.src = 'http://www.baidu.com'
+
+    /**
+     * 2.link
+     * 可以发送不同源地址间的请求
+     * 无法拿到响应结果
+     * @type {Element}
+     */
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'http://www.baidu.com';
+    document.body.appendChild(link);
+
+    /**
+     * script 标签发请求
+     * 也没法拿到响应结果
+     * @type {Element}
+     */
+    var script = document.createElement('script');
+     script.src = 'http://localhost/myWebProject/ajax/test-cross-domain.php';
+    document.body.appendChild(script);
+
+    /**
+     * 相当于回调函数
+     * @param res
+     */
+    function callBack(res) {
+        console.log(res);
+    }
+
+
+</script>
+
+
+
+</body>
+</html>

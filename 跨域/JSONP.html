@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery.js"></script>
+</head>
+<body>
+
+<script>
+
+    function callBack(res) {
+        alert(res['time']);
+    }
+
+    /**
+     * 自己使用jsonp
+     * @type {string}
+     */
+    var funcName = 'function_' + Date.now() + Math.random().toString().substr(2);
+    window[funcName] = function (res) {
+        console.log(res);
+    }
+    var script = document.createElement('script');
+    script.src = 'http://localhost/myWebProject/%E8%B7%A8%E5%9F%9F/users.php?id=19&callback='+funcName;
+    document.body.appendChild(script);
+
+    /**
+     * jquery 自带jsonp
+     */
+    $.ajax({
+        url:'http://localhost/myWebProject/%E8%B7%A8%E5%9F%9F/users.php',
+        dataType:'jsonp',
+        data:{
+            id:19
+        },
+        success:function (res) {
+          console.log(res);
+        }
+    });
+
+
+</script>
+
+<!--通过script 标签请求一个服务端的php文件-->
+<!--文件返回的结果是一段js，作用是调用我们事先定义好的一个函数-->
+<!--从而将服务端的数据发送给客户端-->
+<script src="http://localhost/myWebProject/ajax/test-cross-domain.php"></script>
+
+</body>
+</html>

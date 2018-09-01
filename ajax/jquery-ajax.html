@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../nprogress-0.2.0/nprogress.css">
     <script src="../jquery.js"></script>
+    <script src="../nprogress-0.2.0/nprogress.js"></script>
 </head>
 <body>
 
@@ -30,6 +32,13 @@
         error:function (res) {
             console.log(res)
         },
+        complete:function (res) {
+            NProgress.done();
+        },
+        beforeSend:function (res) {
+            NProgress.start();
+
+        }
 
     })
 
