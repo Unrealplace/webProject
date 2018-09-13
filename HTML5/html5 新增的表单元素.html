@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="">
+    专业：
+    <select name="" id="">
+        <option value="1">OC</option>
+        <option value="2">VB++</option>
+        <option value="3">A++</option>
+        <option value="4">C++</option>
+    </select>
+    <br>
+
+    专业：
+    <!--可以输入可以选择的下拉选择框-->
+    <input type="text" list="sub">
+    <!--建立输入框和datalist 的关联-->
+    <datalist id="sub">
+        <option value="1">OC</option>
+        <option value="2">VB++</option>
+        <option value="3">A++</option>
+        <option value="4">C++</option>
+    </datalist>
+
+    <br>
+
+    专业：
+    <!--可以输入可以选择的下拉选择框-->
+    <input type="url" list="urls">
+    <!--value 必须是http开头，不然识别不到 的关联-->
+    <datalist id="urls">
+        <option value="http://www.baidu.com">OC</option>
+        <option value="http://www.baidu.com">VB++</option>
+        <option value="http://www.baidu.com">C++</option>
+    </datalist>
+
+</form>
+
+<br>
+
+<form action="">
+    用户名：<input type="text" name="user"><br>
+    密码：<input type="password" name="pass"><br>
+    <keygen></keygen>
+        <br>
+    <input type="submit">
+</form>
+
+</body>
+</html>

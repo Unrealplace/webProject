@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<canvas width="600" height="500">
+
+</canvas>
+
+<script>
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext("2d");
+    /**
+     * 画平行线
+     */
+
+    ctx.beginPath();//开启新路径
+    ctx.moveTo(100,100.5);
+    ctx.lineTo(500,100.5);
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 10;
+    ctx.stroke();
+
+    ctx.beginPath();//开启新路径
+    ctx.moveTo(100,300);
+    ctx.lineTo(500,300);
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    ctx.beginPath();//开启新路径
+    ctx.moveTo(100,400);
+    ctx.lineTo(500,400);
+    ctx.strokeStyle = 'green';
+    ctx.lineWidth = 10;
+    ctx.stroke();
+
+
+    /**
+     *
+     * 开启新路径可以解决样式覆盖问题
+     *
+     * /
+
+    /**
+     * 关于线条的问题
+     * 1。默认宽度是 1px
+     * 2。默认颜色 黑色
+     *
+     * 但是实际绘制出来的效果是灰色和2px
+     * 因为绘制的时候比如从（100，50）坐标开始画
+     * 实际绘制的时候是从（100，49.5）（100，50.5）这个高度绘制线条的上下各占一半，
+     * 对齐的点是线的中心位置
+     * 解决办法上下和前后移动0.5 px
+     * 导致实际的颜色不再饱和，变成了灰色，同时不能显示.5像素，则从49 - 51 这个都是线条的高度了
+     */
+
+</script>
+</body>
+</html>

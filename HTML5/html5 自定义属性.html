@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--规范：-->
+<!--1。data-开头-->
+<!--2。data- 后必须要有一个字符-->
+<!--建议-->
+<!--多个单词用-连接-->
+<!--1。属性名称要使用小写-->
+<!--2。不要特殊符号-->
+<!--3。不要纯数字-->
+
+<p data-username="username">liyangyang</p>
+<h1 data-user-name="nice to meet you">nihao</h1>
+
+<script>
+//    自定义属性的去值
+    window.onload = function () {
+
+        var p = document.querySelector('p');
+
+        /**
+         * 名称使用🐫命名法
+         */
+        var value = p.dataset['username'];
+
+        alert(value);
+
+        var h = document.querySelector('h1');
+        var val = h.dataset['userName'];
+        alert(val);
+
+
+    }
+</script>
+</body>
+</html>

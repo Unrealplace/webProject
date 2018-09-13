@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .green{
+            color: green;
+        }
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+        .black{
+            color: black;
+        }
+        .font{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li class="red">C++</li>
+    <li class="green">A++</li>
+    <li class="blue">B++</li>
+    <li class="black">D++</li>
+</ul>
+
+<script>
+    window.onload = function () {
+
+        /**
+         * 查询元素的新增方式
+         * @type {Element}
+         */
+        var bbb = document.querySelector(".green")
+        bbb.innerHTML = 'nice to meet you';
+
+        var all = document.querySelectorAll('li');
+        console.log(all);
+
+        /**
+         * 动态添加样式
+         * 移除样式
+         */
+        document.querySelector('.red').onclick = function () {
+            this.classList.add("font");
+            this.classList.add('underline');
+            document.querySelector('.blue').classList.remove('blue');
+        }
+
+    }
+</script>
+
+</body>
+</html>

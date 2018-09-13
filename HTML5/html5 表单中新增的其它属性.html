@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="" id="myForm">
+    <!--提示占位-->
+    <!--自动获取焦点-->
+    <!--自动填充上一次的值
+      1。必须成功提交过
+      2。添加了autocomplete 必须要有name 属性
+      3。属性要打开
+    -->
+    <input type="text" name="userName" placeholder="请输入用户名：" autofocus autocomplete="on">
+    <br>
+    手机号：
+    <!--required 限制用户必须输入数据-->
+    <!--pattern 正则表达式的验证-->
+    <input type="tel" required pattern="/^((1[358][0-9])|(14[57])|(17[0678])|(19[7]))\d{8}$/">
+    <br>
+    <!--多文件选择-->
+    <input type="file" name="photo" multiple>
+    <br>
+
+    <input type="submit">
+
+</form>
+<br>
+<!--下面这个不再表单中，怎样处理呢-->
+<!--相当于加入到表单中-->
+地址：<input type="text" name="address" form="myForm">
+
+</body>
+</html>
