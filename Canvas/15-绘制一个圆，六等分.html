@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<!--1。准备画布-->
+<!--画布是白色的，默认300*150-->
+<!--设置画布的大小
+ 不建议在样式中写大小，可以内置样式中设置
+-->
+<canvas width="600" height="400" id="mycanvas"></canvas>
+<!--2。准备绘制工具-->
+<!--3。利用工具绘图-->
+
+<script>
+    /**
+     * 获取画布
+     * @type {Element}
+     */
+    var mycanvas = document.querySelector('canvas');
+    /**
+     * 获取上下文
+     * webGL 绘制3d效果
+     * 理解为绘制工具箱
+     */
+    var ctx = mycanvas.getContext('2d');
+
+
+    var w = ctx.canvas.width;
+    var h = ctx.canvas.height;
+
+    var num = 6;
+    /**
+     * 每一弧度
+     * @type {number}
+     */
+    var angle = Math.PI*2 / num;
+
+    for (var i = 0;i < num;i++){
+        var startAngle = i * angle;
+        var endAngle = (i+1)*angle;
+        ctx.beginPath();
+        ctx.moveTo(w/2,h/2);
+        ctx.arc(w/2,h/2,150,startAngle,endAngle,false);
+        ctx.fillStyle = getRandomColor();
+        ctx.fill();
+    }
+
+    function getRandomColor() {
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        return 'rgb('+r+','+g+','+b+')';
+    }
+
+
+
+</script>
+
+</body>
+</html>

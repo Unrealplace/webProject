@@ -17,31 +17,18 @@
 <script>
     var canvas = document.querySelector('canvas');
     var ctx = canvas.getContext("2d");
-    /**
-     * 画平行线
-     */
 
-    ctx.beginPath();//开启新路径
-    ctx.moveTo(100,100.5);
-    ctx.lineTo(500,100.5);
-    ctx.strokeStyle = 'blue';
-    ctx.lineWidth = 10;
+    ctx.moveTo(100,100);
+    ctx.lineTo(300,100);
+
+    ctx.lineTo(300,300);
+    //使用canvas自动关闭路径，防止手动闭合路径出现缺点，起点和终点不重合
+//    ctx.lineTo(100,100);
+
+    ctx.closePath();
+
+    ctx.fill();
     ctx.stroke();
-
-    ctx.beginPath();//开启新路径
-    ctx.moveTo(100,300);
-    ctx.lineTo(500,300);
-    ctx.strokeStyle = 'red';
-    ctx.lineWidth = 5;
-    ctx.stroke();
-
-    ctx.beginPath();//开启新路径
-    ctx.moveTo(100,400);
-    ctx.lineTo(500,400);
-    ctx.strokeStyle = 'green';
-    ctx.lineWidth = 10;
-    ctx.stroke();
-
 
     /**
      *

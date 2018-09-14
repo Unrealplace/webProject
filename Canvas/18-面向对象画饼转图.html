@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<!--1。准备画布-->
+<!--画布是白色的，默认300*150-->
+<!--设置画布的大小
+ 不建议在样式中写大小，可以内置样式中设置
+-->
+<canvas width="600" height="400" id="mycanvas"></canvas>
+<!--2。准备绘制工具-->
+<!--3。利用工具绘图-->
+
+<script>
+
+    /**
+     * 1。根据数据绘制一个饼图
+     * 2。绘制标题 ，从扇形的弧中心伸出一条线，在横线上面写文字标题
+     * 3。在画布的左上角绘制说明
+     */
+
+    var PieChart = function (ctx) {
+        var ctx = ctx || document.querySelector('canvas').getContext('2d');
+    }
+
+    PieChart.prototype.init = function () {
+
+    }
+
+    PieChart.prototype.drawPie = function () {
+
+    }
+
+    PieChart.prototype.drawTitle = function () {
+
+    }
+    PieChart.prototype.drawDesc = function () {
+
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

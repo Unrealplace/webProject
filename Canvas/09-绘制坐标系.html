@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<!--1。准备画布-->
+<!--画布是白色的，默认300*150-->
+<!--设置画布的大小
+ 不建议在样式中写大小，可以内置样式中设置
+-->
+<canvas width="600" height="400" id="mycanvas"></canvas>
+<!--2。准备绘制工具-->
+<!--3。利用工具绘图-->
+
+<script>
+    /**
+     * 获取画布
+     * @type {Element}
+     */
+    var mycanvas = document.querySelector('canvas');
+    /**
+     * 获取上下文
+     * webGL 绘制3d效果
+     * 理解为绘制工具箱
+     */
+    var ctx = mycanvas.getContext('2d');
+
+    /**
+     * 1。网格大小确定
+     * 2。画几条x 轴的线
+     * 3。画几条y 轴的线
+     */
+    var gridSize = 10;//表格大小
+    var canvasHeight = mycanvas.height;
+    var canvasWidth  = mycanvas.width;
+    var xLineTotal = Math.floor(canvasHeight/gridSize);
+    var yLienTotal = Math.floor(canvasWidth/gridSize);
+    /**
+     * 横线
+     */
+    for (var i = 0;i<=xLineTotal;i++){
+        ctx.beginPath();
+        ctx.moveTo(0,gridSize*i-0.5);
+        ctx.lineTo(canvasWidth,gridSize*i-0.5);
+        ctx.strokeStyle = '#ddd';
+        ctx.stroke();
+    }
+    /**
+     * 竖线
+     */
+    for (var i = 0;i<=yLienTotal;i++){
+        ctx.beginPath();
+        ctx.moveTo(gridSize*i-0.5,0);
+        ctx.lineTo(gridSize*i-0.5,canvasHeight);
+        ctx.strokeStyle = '#ddd';
+        ctx.stroke();
+    }
+
+    /**
+     * 1。确定坐标轴的长度
+     * 2。确定箭头大小
+     */
+    var padding = 2*gridSize;
+    var arrowSize = gridSize;
+
+    var originPointx = padding;
+    var originPointy = canvasHeight- padding;
+
+    ctx.beginPath();
+    ctx.moveTo(originPointx,originPointy);
+    ctx.lineTo(canvasWidth-padding,originPointy);
+    ctx.lineTo(canvasWidth-padding-arrowSize,originPointy+gridSize/2.0);
+    ctx.lineTo(canvasWidth-padding-arrowSize,originPointy-gridSize/2.0);
+    ctx.lineTo(canvasWidth-padding,originPointy);
+    ctx.fill();
+    ctx.strokeStyle = '#000';
+    ctx.stroke();
+
+
+    ctx.beginPath();
+    ctx.moveTo(originPointx,originPointy);
+    ctx.lineTo(originPointx,padding);
+    ctx.lineTo(originPointx-gridSize/2.0,padding+gridSize);
+    ctx.lineTo(originPointx+gridSize/2.0,padding+gridSize);
+    ctx.lineTo(originPointx,padding);
+    ctx.fill();
+    ctx.strokeStyle = '#000';
+    ctx.stroke();
+
+    /**
+     * 箭头
+     */
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

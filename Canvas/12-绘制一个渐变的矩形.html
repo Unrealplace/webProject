@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<!--1。准备画布-->
+<!--画布是白色的，默认300*150-->
+<!--设置画布的大小
+ 不建议在样式中写大小，可以内置样式中设置
+-->
+<canvas width="600" height="400" id="mycanvas"></canvas>
+<!--2。准备绘制工具-->
+<!--3。利用工具绘图-->
+
+<script>
+    /**
+     * 获取画布
+     * @type {Element}
+     */
+    var mycanvas = document.querySelector('canvas');
+    /**
+     * 获取上下文
+     * webGL 绘制3d效果
+     * 理解为绘制工具箱
+     */
+    var ctx = mycanvas.getContext('2d');
+
+    /**
+     * 创建一个渐变方案
+     *
+     * 渐变是有长度的
+     */
+
+    var linerGradient = ctx.createLinearGradient(100,100,500,100);
+    /**
+     * 按百分比添加渐变
+     */
+    linerGradient.addColorStop(0,'red');
+    linerGradient.addColorStop(0.5,'green');
+    linerGradient.addColorStop(1,'blue');
+    ctx.fillStyle = linerGradient;
+    ctx.fillRect(100,100,400,100);
+
+
+
+
+</script>
+
+</body>
+</html>

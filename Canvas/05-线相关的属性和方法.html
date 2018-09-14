@@ -23,23 +23,32 @@
 
     ctx.beginPath();//开启新路径
     ctx.moveTo(100,100.5);
+    ctx.lineTo(250,20);
     ctx.lineTo(500,100.5);
     ctx.strokeStyle = 'blue';
     ctx.lineWidth = 10;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';//圆形拐点
     ctx.stroke();
 
     ctx.beginPath();//开启新路径
     ctx.moveTo(100,300);
+    ctx.lineTo(200,100);
     ctx.lineTo(500,300);
     ctx.strokeStyle = 'red';
+    ctx.lineCap = 'square';
+    ctx.lineJoin = 'level';//方的拐点
     ctx.lineWidth = 5;
     ctx.stroke();
 
     ctx.beginPath();//开启新路径
     ctx.moveTo(100,400);
+    ctx.lineTo(200,200);
     ctx.lineTo(500,400);
     ctx.strokeStyle = 'green';
     ctx.lineWidth = 10;
+    ctx.lineCap = 'butt';
+    ctx.lineJoin = 'miter';//默认拐点样式
     ctx.stroke();
 
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid #ccc;
+
+        }
+    </style>
+</head>
+<body>
+<!--1。准备画布-->
+<!--画布是白色的，默认300*150-->
+<!--设置画布的大小
+ 不建议在样式中写大小，可以内置样式中设置
+-->
+<canvas width="600" height="400" id="mycanvas"></canvas>
+<!--2。准备绘制工具-->
+<!--3。利用工具绘图-->
+
+<script>
+    /**
+     * 获取画布
+     * @type {Element}
+     */
+    var mycanvas = document.querySelector('canvas');
+    /**
+     * 获取上下文
+     * webGL 绘制3d效果
+     * 理解为绘制工具箱
+     */
+    var ctx = mycanvas.getContext('2d');
+
+
+    var w = ctx.canvas.width;
+    var h = ctx.canvas.height;
+    var text = '大家好，我是张家辉';
+
+
+    /**
+     * 画一个基线
+     */
+    ctx.beginPath();
+    ctx.moveTo(0,h/2 -.5);
+    ctx.lineTo(w,h/2-.5);
+    ctx.moveTo(w/2-.5,0);
+    ctx.lineTo(w/2-.5,h);
+    ctx.stroke();
+
+    /**
+     *  绘制文本
+     *  1。起点位置在文字的左下角
+     *  2。
+     */
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'red';
+    ctx.font = '25px 宋体';
+    /**
+     * 这里对齐方式是指起始坐标
+     * @type {string}
+     * left
+     * right
+     * center
+     */
+    ctx.textAlign = 'center';
+
+    /**
+     * 文本基线问题
+     *  top
+     *  middle
+     *  bottom
+     *  都是基于起始坐标的
+     */
+    ctx.textBaseline = 'middle';
+
+//    ctx.strokeText(text,w/2,h/2);
+    ctx.fillText(text,w/2,h/2);
+
+    /**
+     * 在文字下边画一条线，和文字一样长
+     */
+
+    ctx.beginPath();
+    ctx.moveTo(w/2-ctx.measureText(text).width/2,h/2+25);
+    ctx.lineTo(w/2+ctx.measureText(text).width/2,h/2+25);
+    ctx.stroke();
+
+
+
+
+</script>
+
+</body>
+</html>

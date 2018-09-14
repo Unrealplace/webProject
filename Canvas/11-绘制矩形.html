@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<!--1。准备画布-->
+<!--画布是白色的，默认300*150-->
+<!--设置画布的大小
+ 不建议在样式中写大小，可以内置样式中设置
+-->
+<canvas width="600" height="600" id="mycanvas"></canvas>
+<!--2。准备绘制工具-->
+<!--3。利用工具绘图-->
+
+<script>
+    /**
+     * 获取画布
+     * @type {Element}
+     */
+    var mycanvas = document.querySelector('canvas');
+    /**
+     * 获取上下文
+     * webGL 绘制3d效果
+     * 理解为绘制工具箱
+     */
+    var ctx = mycanvas.getContext('2d');
+
+    /**
+     * 不是独立路径
+     */
+//    ctx.rect(100,100,100,100);
+//    ctx.fillStyle = 'red';
+//    ctx.strokeStyle = 'green';
+//    ctx.strokeWidth = 5;
+//    ctx.fill();
+//    ctx.strike();
+
+    //有自己独立的路径
+    ctx.strokeRect(100,400,50,50);
+
+    ctx.fillRect(100,100,200,200);
+
+    //擦出一块区域
+    ctx.clearRect(0,0,150,150);
+
+
+</script>
+
+</body>
+</html>
