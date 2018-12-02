@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        canvas  {
+            border: 1px solid #cccccc;
+        }
+    </style>
+</head>
+
+<body>
+
+<canvas width="1800" height="4000"></canvas>
+
+<script>
+
+    var mycanvas = document.querySelector('canvas');
+    var ctx = mycanvas.getContext('2d');
+
+    //创建一个图片加载到内存中
+    //    var img = document.createElement('img');
+    var img = new Image();
+    // 必须等图片加载完毕才能获取宽高
+    img.onload = function () {
+
+
+        //动态获取图片的尺寸
+        var imgW = img.width;
+        var imgH = img.height;
+
+        //一个小人的大小
+        var oneW = imgW / 4;
+        var oneH = imgH / 4;
+
+
+        for (var row = 0;row < 4;row++){
+            for (var colum = 0;colum<4;colum++ ){
+                setInterval(function () {
+                    ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+                    ctx.drawImage(img,row*oneW,colum*oneH,oneW,oneH,0,0,oneW,oneH);
+
+                },1000);
+            }
+        }
+
+
+    };
+    img.src = 'images/03.png';
+
+
+
+
+</script>
+
+
+</body>
+</html>
