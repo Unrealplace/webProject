@@ -10,17 +10,20 @@
     </style>
 </head>
 <body>
+
 <!--1。准备画布-->
 <!--画布是白色的，默认300*150-->
 <!--设置画布的大小
  不建议在样式中写大小，可以内置样式中设置
 -->
+
 <canvas width="600" height="400" id="mycanvas"></canvas>
 <!--2。准备绘制工具-->
 <!--3。利用工具绘图-->
-
 <script>
 
+    var myCanvas = document.querySelector('canvas');
+    var ctx      = myCanvas.getContext('2d');
     /**
      * 1。根据数据绘制一个饼图
      * 2。绘制标题 ，从扇形的弧中心伸出一条线，在横线上面写文字标题
@@ -28,26 +31,146 @@
      */
 
     var PieChart = function (ctx) {
-        var ctx = ctx || document.querySelector('canvas').getContext('2d');
+        this.ctx = ctx || document.querySelector('canvas').getContext('2d');
+        this.w = ctx.canvas.width;
+        this.h = ctx.canvas.height;
+        this.x0 = this.w/2 + 60;
+        this.y0 = this.h/2;
+        this.radius = 150;
+        this.outLine = 20;
+        this.desWidth = 25;
+        this.desHeight = 10;
+        this.desSpace = 10;
     }
 
-    PieChart.prototype.init = function () {
+    PieChart.prototype.init = function (data) {
+        this.drawPie(data);
+    }
+
+    PieChart.prototype.drawPie = function (data) {
+
+        var self = this;
+        /**
+         * 转换弧度
+         */
+        var angleList  = this.transformAngle(data);
+        /**
+         * 绘制饼图
+         */
+        var startAngel = 0;
+        angleList.forEach(function (item,i) {
+            var color = self.getRandomColor()
+            var endAngle = startAngel + item.angle;
+            self.ctx.beginPath();
+            self.ctx.moveTo(self.x0,self.y0);
+            self.ctx.arc(self.x0,self.y0,self.radius,startAngel,endAngle);
+            self.ctx.fillStyle = color;
+            self.ctx.closePath();
+            self.ctx.fill();
+            /*
+            绘制标题
+            * */
+            self.drawTitle(startAngel,item.angle,color,item.title);
+
+            /*
+            * 绘制说明
+            * */
+            self.drawDesc(i,item.title);
+            startAngel = endAngle;
+        })
+    }
+
+    /**
+     *绘制标题
+     * 起始 弧度为0
+     * x = x0 + cos(angle) * (r + outline)
+     * y = y0 + sin(angle) * (r + outline)
+     */
+    PieChart.prototype.drawTitle = function (startAngle,angle,color,title) {
+      var edge = this.radius + this.outLine;
+      var theAngle = startAngle + angle/2;
+      var edgeX = Math.cos(theAngle) * edge;
+      var edgeY = Math.sin(theAngle) * edge;
+      var x = this.x0 + edgeX;
+      var y = this.y0 + edgeY;
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.x0,this.y0);
+      this.ctx.strokeStyle = color;
+      this.ctx.lineTo(x,y);
+
+        /**
+         * 画文字和下划线
+         */
+        this.ctx.font = '16px';
+        var titleWidth = this.ctx.measureText(title).width;
+        if (x>this.x0){
+            this.ctx.lineTo(x+titleWidth,y);
+            this.ctx.textAlign = 'left';
+        }else  {
+            this.ctx.lineTo(x-titleWidth,y);
+            this.ctx.textAlign = 'right';
+
+        }
+        this.ctx.textBaseline = 'bottom';
+        this.ctx.fillText(title,x,y);
+        this.ctx.stroke();
+        this.ctx.closePath();
 
     }
 
-    PieChart.prototype.drawPie = function () {
+    PieChart.prototype.drawDesc = function (index,title) {
 
+        this.ctx.fillRect(this.desSpace,this.desSpace + index*(this.desHeight + this.desSpace),this.desWidth,this.desHeight);
+
+        this.ctx.beginPath();
+        this.ctx.textAlign = 'left';
+        this.ctx.textBaseline = 'top';
+        this.ctx.fillText(title,this.desSpace + this.desWidth+10,this.desSpace + index*(this.desHeight + this.desSpace));
     }
 
-    PieChart.prototype.drawTitle = function () {
+    PieChart.prototype.transformAngle = function (data) {
 
+        var total = 0;
+        data.forEach(function (item,i) {
+            total+=item.num;
+        })
+        data.forEach(function (item,i) {
+            var angle = item.num/total * Math.PI*2;
+            //追加一个属性
+            item.angle = angle;
+        })
+        
+        return data;
     }
-    PieChart.prototype.drawDesc = function () {
 
+    PieChart.prototype.getRandomColor = function () {
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        return 'rgb('+r+','+g+','+b+')';
     }
 
+    var data = [
+        {
+            title:'15-20岁',
+            num:6
+        },
+        {
+            title:'20-2555555555岁',
+            num:30
+        },
+        {
+            title:'25-30岁',
+            num:20
+        },
+        {
+            title:'30岁',
+            num:10
+        }
+    ]
 
-
+    var pieChart = new PieChart(ctx);
+    pieChart.init(data);
 
 </script>
 
