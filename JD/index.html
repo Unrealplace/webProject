@@ -2,28 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0">
+    <!--引入公共样式-->
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+
+    <!--引入首页的js文件-->
+    <script src="./js/index.js"></script>
     <title>Title</title>
 </head>
 
 <body>
+<div class="jd_layout">
+    <!--搜索模块-->
+    <div class="jd_search">
+        <a href="javascript:;" class="jd_logo"></a>
+        <form action="" class="jd_searchBox">
+            <input type="text" placeholder="请输入商品名称">
+        </form>
+        <a href="javasript:;" class="jd_login">登录</a>
+    </div>
+    <!--轮播图-->
+    <div class="jd_banner">
+        <!--轮播图片-->
+        <ul class="jd_bannerImg clearfix">
 
-<div class="box">
+            <li><a href="javascript:;"><img src="./uploads/l1.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./uploads/l2.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./uploads/l3.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./uploads/l4.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./uploads/l5.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./uploads/l6.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./uploads/l7.jpg" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./uploads/l8.jpg" alt=""></a></li>
+
+        </ul>
+    <!--标记点-->
+        <ul class="jd_bannerIndicator">
+            <li></li>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    <!--菜单导航-->
+        <div class="jd_nav">
+            <ul class="clearfix">
+                <li><a href="javascript:;"><img src="./images/nav_1.png" alt="">
+                    <p>商品分类</p>
+                </a></li>
+                <li><a href="javascript:;"><img src="./images/nav_2.png" alt="">
+                    <p>商品分类</p>
+                </a></li>
+                <li><a href="javascript:;"><img src="./images/nav_3.png" alt="">
+                    <p>商品分类</p>
+                </a></li>
+                <li><a href="javascript:;"><img src="./images/nav_4.png" alt="">
+                    <p>商品分类</p>
+                </a></li>
+                <li><a href="javascript:;"><img src="./images/nav_5.png" alt="">
+                    <p>商品分类</p>
+                </a></li>
+                <li><a href="javascript:;"><img src="./images/nav_6.png" alt="">
+                    <p>商品分类</p>
+                </a></li>
+                <li><a href="javascript:;"><img src="./images/nav_7.png" alt="">
+                    <p>商品分类</p>
+                </a></li>
+                <li><a href="javascript:;"><img src="./images/nav_8.png" alt="">
+                    <p>商品分类</p>
+                </a></li>
+            </ul>
+        </div>
+
+    </div>
+
 
 </div>
-
-<script>
-
-    function jdTitle() {
-        return 'hello world nice to meet you';
-    }
-
-    window.onload = function () {
-     var box = document.getElementsByClassName('box')[0];
-     box.innerHTML = jdTitle();
-    }
-
-</script>
-
 
 
 </body>

@@ -20,6 +20,31 @@
     </span>
 </div>
 
+<div id="box1">
+    <p v-if="see">你可以看见我了</p>
+</div>
+
+<div id="box2">
+    <ol>
+        <li v-for="item in titles">
+            {{item.title}}
+        </li>
+    </ol>
+</div>
+
+<div id="box3">
+    <p>{{content}}</p>
+    <button v-on:click="changeContent">改变内容</button>
+</div>
+
+<div>
+    <ol>
+        <list-view>
+
+        </list-view>
+    </ol>
+</div>
+
 <script>
     var app = new Vue({
        el:'#app',
@@ -34,6 +59,39 @@
             message: '页面加载'+new Date().toLocaleDateString()
         }
     })
+    var app3 = new Vue({
+        el:'#box1',
+        data:{
+            see:true
+        }
+    })
+
+    var app4 = new Vue({
+        el:'#box2',
+        data:{
+            titles:[
+                {title:'hello world'},
+                {title:'nice to meet you'},
+                {title:'fine thks and you'},]
+        }
+    })
+
+    var app5 = new Vue({
+        el:'#box3',
+        data:{
+            content:'nice to meet you'
+        },
+        methods:{
+            changeContent:function () {
+                this.content = this.content.split('').reverse().join('')
+            }
+        }
+    })
+
+    Vue.component('list-view',{
+        template: '<li>this is  a base view </li>'
+    })
+
 </script>
 
 
